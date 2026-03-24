@@ -29,10 +29,10 @@ Message Board where users can write and read messages.
         - author
 - in express app make sure to gitignore the .env file [x]
 - homepage should show the messages (but authors only visible for club-members)
-- create a signup form
-    - sanitize inputs
-    - secure pw with bcrypt
-    - confirm pw field with custom validator
+- create a signup form [x]
+    - sanitize inputs []
+    - secure pw with bcrypt []
+    - confirm pw field with custom validator []
 - create new message form (only visible to logged in users)
 - create join-the-club page where users can join with a secret code
 - login form
