@@ -13,8 +13,8 @@ Message Board where users can write and read messages.
 - bcrypt
 
 **TODO:**
-- create a DB called members_only
-- create tables for users, messages
+- create a DB called members_only [x]
+- create tables for users, messages [x]
     - users fields: 
         - firstname, 
         - lastname, 
@@ -27,7 +27,7 @@ Message Board where users can write and read messages.
         - title
         - timestamp
         - author
-- in express app make sure to gitignore the .env file
+- in express app make sure to gitignore the .env file [x]
 - homepage should show the messages (but authors only visible for club-members)
 - create a signup form
     - sanitize inputs

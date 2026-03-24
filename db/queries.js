@@ -10,7 +10,13 @@ async function getAllMessages() {
     return rows
 }
 
+async function addUser(user) {
+  await pool.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4);", 
+    [user.firstname, user.lastname, user.email, user.password])
+}
+
 module.exports = {
   getAllUsers,
-  getAllMessages
+  getAllMessages,
+  addUser
 };
