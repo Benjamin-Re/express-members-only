@@ -33,10 +33,10 @@ Message Board where users can write and read messages.
     - sanitize inputs []
     - secure pw with bcrypt []
     - confirm pw field with custom validator []
-- create new message form (only visible to logged in users)
-- create join-the-club page where users can join with a secret code
-- login form
-- create delete functionality for admins (set admin manually in db)
-- deploy
+- create new message form (only visible to logged in users) []
+- create join-the-club page where users can join with a secret code []
+- login form []
+- create delete functionality for admins (set admin manually in db) []
+- deploy []
 
 

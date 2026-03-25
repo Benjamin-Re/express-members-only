@@ -5,6 +5,11 @@ async function getAllMessages(req, res) {
     res.render('index', { messages })
 }
 
+async function showCreateMessageForm(req, res) {
+    res.render('create-message')
+}
+
 module.exports = {
-    getAllMessages
+    getAllMessages,
+    showCreateMessageForm
 }
