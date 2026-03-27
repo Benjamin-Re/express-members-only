@@ -15,16 +15,8 @@ async function showLoginForm(req, res) {
     res.render('login.ejs')
 }
 
-async function loginUser(req, res) {
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/'
-    })
-}
-
 module.exports = {
     showSignupForm,
     addUser,
     showLoginForm,
-    loginUser
 }

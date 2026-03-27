@@ -6,6 +6,9 @@
     <title>Home</title>
 </head>
 <body>
+    <% if (user) { %>
+        <p>Welcome <%= user.firstname %></p>
+    <% } %>
     <% messages.forEach(message => { %> 
         <div>
             <h2><%= message.title %></h2>

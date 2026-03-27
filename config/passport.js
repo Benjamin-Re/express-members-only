@@ -1,5 +1,9 @@
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const pool = require("../db/pool");
+
 passport.use(
-  new LocalStrategy(async (email, password, done) => {
+  new LocalStrategy({usernameField: 'email'}, async (email, password, done) => {
     try {
       const { rows } = await pool.query(
         "SELECT * FROM users WHERE email = $1",
@@ -32,3 +36,5 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
+
+module.exports = passport;
