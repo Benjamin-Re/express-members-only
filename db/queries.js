@@ -15,8 +15,13 @@ async function addUser(user) {
     [user.firstname, user.lastname, user.email, user.password])
 }
 
+async function addNewMessage(message) {
+  await pool.query("INSERT INTO messages (title, content) VALUES ($1, $2);", [message.title, message.content])
+}
+
 module.exports = {
   getAllUsers,
   getAllMessages,
-  addUser
+  addUser,
+  addNewMessage
 };
