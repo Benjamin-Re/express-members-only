@@ -4,6 +4,8 @@
         <% if (!user) { %>
             <a href="/login">Login</a>
             <a href="/signup">Signup</a>
+        <% } else if (!user.is_club_member) { %>
+                <a href="/join-the-club">Join the club</a>
         <% } %>
         <a href="/create-message">New Message</a>
     </li>

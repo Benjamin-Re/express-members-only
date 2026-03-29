@@ -19,9 +19,21 @@ async function addNewMessage(message) {
   await pool.query("INSERT INTO messages (title, content) VALUES ($1, $2);", [message.title, message.content])
 }
 
+async function joinTheClub(user, secretCode) {
+  const result = await pool.query("SELECT * FROM secret_code;");
+  const actualSecretCode = result.rows[0].secretCode;
+  console.log(`secretCode ${secretCode} actualSecretCode ${actualSecretCode}`)
+  if(secretCode !== actualSecretCode) {
+    return false
+  }
+  await pool.query("UPDATE users SET is_club_member = true WHERE id = $1;", [user.id])
+  return true
+}
+
 module.exports = {
   getAllUsers,
   getAllMessages,
   addUser,
-  addNewMessage
+  addNewMessage,
+  joinTheClub
 };
