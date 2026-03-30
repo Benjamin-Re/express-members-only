@@ -1,7 +1,13 @@
 const db = require('../db/queries')
 
 async function getAllMessages(req, res) {
-    const messages = await db.getAllMessages()
+    const isMember = req.user?.is_club_member
+    let messages;
+    if(isMember) {
+        messages = await db.getAllMessagesWithAuthor()
+    } else {
+        messages = await db.getAllMessages()
+    }
     res.render('index', { messages, user: req.user })
 }
 
