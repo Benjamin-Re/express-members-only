@@ -3,7 +3,7 @@ const db = require('../db/queries')
 async function getAllMessages(req, res) {
     const isMember = req.user?.is_club_member
     let messages;
-    if(isMember) {
+    if (isMember) {
         messages = await db.getAllMessagesWithAuthor()
     } else {
         messages = await db.getAllMessages()
@@ -15,8 +15,12 @@ async function showCreateMessageForm(req, res) {
     res.render('create-message')
 }
 
-async function addNewMessage (req, res) {
-    const message = { title: req.body.title, content: req.body.content }
+async function addNewMessage(req, res) {
+    const timestamp = new Date()
+    const message = { title: req.body.title,
+        content: req.body.content,
+        timestamp: timestamp,
+        author: req.user.id }
     await db.addNewMessage(message)
     res.redirect("/")
 }
