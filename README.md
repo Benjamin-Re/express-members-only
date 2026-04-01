@@ -7,10 +7,13 @@ Message Board where users can write and read messages.
 
 **Technology**:
 - psql
+- pg
 - express
 - express-session
 - passport
 - bcrypt
+- connect-pg-simple
+- ejs
 
 **TODO:**
 - create a DB called members_only [x]
@@ -36,8 +39,10 @@ Message Board where users can write and read messages.
 - create new message form (only visible to logged in users) [x]
 - create join-the-club page where users can join with a secret code [x]
 - login form [x]
+- persist the session [x]
 - create delete functionality for admins (set admin manually in db) []
-- deploy []
+- logout []
 - add css []
+- deploy []
 
 

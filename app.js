@@ -6,13 +6,24 @@ const userRouter = require("./routes/userRouter");
 const path = require("node:path");
 const session = require("express-session");
 const passport = require("passport");
+const pool = require("./db/pool");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // Auth
-app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
-app.use(passport.initialize())
+app.use(
+  session({
+    store: new (require("connect-pg-simple")(session))({
+      pool: pool
+    }),
+    secret: "cats",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 60 * 60 * 1000 },
+  }),
+);
+app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.urlencoded({ extended: true }));
