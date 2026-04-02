@@ -6,7 +6,6 @@ async function showSignupForm(req, res) {
 
 async function addUser(req, res) {
     const user = req.body
-    console.log(user)
     await db.addUser(user)
     res.redirect("/")
 }

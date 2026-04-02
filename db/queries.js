@@ -1,4 +1,5 @@
 const pool = require("./pool");
+const bcrypt = require("bcryptjs");
 
 async function getAllUsers() {
   const { rows } = await pool.query("SELECT * FROM users;");
@@ -16,8 +17,9 @@ async function getAllMessagesWithAuthor() {
 }
 
 async function addUser(user) {
+  const hashedPassword = await bcrypt.hash(user.password, 10);
   await pool.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4);",
-    [user.firstname, user.lastname, user.email, user.password])
+    [user.firstname, user.lastname, user.email, hashedPassword])
 }
 
 async function addNewMessage(message) {
