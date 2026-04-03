@@ -18,8 +18,10 @@ async function getAllMessagesWithAuthor() {
 
 async function addUser(user) {
   const hashedPassword = await bcrypt.hash(user.password, 10);
-  await pool.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4);",
+  const { rows } = await pool.query("INSERT INTO users (firstname, lastname, email, password)\
+     VALUES ($1, $2, $3, $4) RETURNING *;",
     [user.firstname, user.lastname, user.email, hashedPassword])
+  return rows[0]
 }
 
 async function addNewMessage(message) {

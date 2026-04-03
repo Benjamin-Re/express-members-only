@@ -31,18 +31,18 @@ Message Board where users can write and read messages.
         - timestamp
         - author
 - in express app make sure to gitignore the .env file [x]
-- homepage should show the messages (but authors only visible for club-members)
+- homepage should show the messages (but authors only visible for club-members) [x]
 - create a signup form [x]
     - sanitize inputs []
     - secure pw with bcrypt [x]
     - confirm pw field with custom validator []
-    - login user in as he signs up not in a different step []
+    - login user in as he signs up not in a different step [x]
 - create new message form (only visible to logged in users) [x]
 - create join-the-club page where users can join with a secret code [x]
 - login form [x]
 - persist the session [x]
 - create delete functionality for admins (set admin manually in db) []
-- logout []
+- logout [x]
 - add css []
 - deploy []
 

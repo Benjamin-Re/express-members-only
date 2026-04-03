@@ -4,10 +4,15 @@ async function showSignupForm(req, res) {
     res.render('signup-form')
 }
 
-async function addUser(req, res) {
+async function addUser(req, res, next) {
     const user = req.body
-    await db.addUser(user)
-    res.redirect("/")
+    const userInDb = await db.addUser(user)
+    req.login(userInDb, (err) => {
+        if (err) {
+            return next(err);
+        }
+        return res.redirect("/");
+    });
 }
 
 async function showLoginForm(req, res) {
@@ -20,7 +25,7 @@ function showJoinTheClubForm(req, res) {
 
 async function joinTheClub(req, res) {
     const result = await db.joinTheClub(req.user, req.body.secretCode)
-    if(result) {
+    if (result) {
         res.redirect("/")
     } else {
         res.send("Incorrect Secret Code")
