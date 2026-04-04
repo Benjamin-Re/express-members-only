@@ -1,11 +1,33 @@
 const db = require('../db/queries')
+const { body, validationResult, matchedData } = require('express-validator')
+
+const strongPasswordOptions = {
+    minLength: 6,
+    minLowerCase: 1,
+    minUpperCase: 1,
+    minNumbers: 1,
+    minSymbols: 1
+}
+
+const validateData = [ 
+	body('firstname').trim().isAlpha().withMessage('Must contain only letters')
+    .isLength({min: 1,max: 10}).withMessage('Must be between 1 and 10 characters long'), 
+	body('lastname').trim().isAlpha().withMessage('Must contain only letters')
+    .isLength({min: 1,max: 10}).withMessage('Must be between 1 and 10 characters long'),
+    body('email').trim().isEmail().withMessage('Must be an email'),
+    body('password').trim().isStrongPassword(strongPasswordOptions)
+]
 
 async function showSignupForm(req, res) {
     res.render('signup-form')
 }
 
 async function addUser(req, res, next) {
-    const user = req.body
+    const errors = validationResult(req) 
+	if (!errors.isEmpty()) {
+        res.render('signup-form', { errors: errors.array(), bodyPrev: req.body })
+    }
+	const user = matchedData(req)
     const userInDb = await db.addUser(user)
     req.login(userInDb, (err) => {
         if (err) {
@@ -47,5 +69,6 @@ module.exports = {
     showLoginForm,
     showJoinTheClubForm,
     joinTheClub,
-    logoutUser
+    logoutUser,
+    validateData
 }

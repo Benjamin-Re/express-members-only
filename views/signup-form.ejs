@@ -6,9 +6,14 @@
     <title>Signup</title>
 </head>
 <body>
+    <% if (locals.errors) { %>
+        <% for(let i = 0; i < errors.length; i++) { %>
+            <p>Error: <%= errors[i].msg %></p>
+        <% } %>
+    <% } %>
     <form action="/signup" method="POST">
         <label for="firstname">First Name: </label>
-        <input type="text" id="firstname" name="firstname">
+        <input type="text" id="firstname" name="firstname" value="<%= locals.bodyPrev?.firstname || '' %>">
 
         <label for="lastname">Last Name: </label>
         <input type="text" id="lastname" name="lastname">
