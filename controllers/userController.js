@@ -1,4 +1,5 @@
 const db = require('../db/queries')
+const passport = require('../config/passport')
 const { body, validationResult, matchedData } = require('express-validator')
 
 const strongPasswordOptions = {
@@ -9,25 +10,39 @@ const strongPasswordOptions = {
     minSymbols: 1
 }
 
-const validateData = [ 
-	body('firstname').trim().isAlpha().withMessage('Must contain only letters')
-    .isLength({min: 1,max: 10}).withMessage('Must be between 1 and 10 characters long'), 
-	body('lastname').trim().isAlpha().withMessage('Must contain only letters')
-    .isLength({min: 1,max: 10}).withMessage('Must be between 1 and 10 characters long'),
-    body('email').trim().isEmail().withMessage('Must be an email'),
-    body('password').trim().isStrongPassword(strongPasswordOptions)
+const validateSignupData = [
+    body('firstname')
+        .trim()
+        .escape()
+        .isAlpha().withMessage('Must contain only letters')
+        .isLength({ min: 1, max: 10 }).withMessage('Must be between 1 and 10 characters long'),
+    body('lastname')
+        .trim()
+        .escape()
+        .isAlpha().withMessage('Must contain only letters')
+        .isLength({ min: 1, max: 10 }).withMessage('Must be between 1 and 10 characters long'),
+    body('email')
+        .trim()
+        .escape()
+        .isEmail().withMessage('Must be an email'),
+    body('password')
+        .trim()
+        .escape()
+        .isStrongPassword(strongPasswordOptions).withMessage('minLength 6, min -Lower, -Upper, -Num and -Symbol: 1')
 ]
+
+
 
 async function showSignupForm(req, res) {
     res.render('signup-form')
 }
 
 async function addUser(req, res, next) {
-    const errors = validationResult(req) 
-	if (!errors.isEmpty()) {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
         res.render('signup-form', { errors: errors.array(), bodyPrev: req.body })
     }
-	const user = matchedData(req)
+    const user = matchedData(req)
     const userInDb = await db.addUser(user)
     req.login(userInDb, (err) => {
         if (err) {
@@ -63,6 +78,25 @@ function logoutUser(req, res) {
     });
 }
 
+const validateLoginData = [
+    body('email').trim().isEmail().withMessage('email expected'),
+    body('password').trim().notEmpty().withMessage('expected password')
+]
+
+function loginValidatorMiddleware(req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.redirect('/login');
+    }
+    next();
+}
+
+const loginUser = passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+})
+
+
 module.exports = {
     showSignupForm,
     addUser,
@@ -70,5 +104,8 @@ module.exports = {
     showJoinTheClubForm,
     joinTheClub,
     logoutUser,
-    validateData
+    loginUser,
+    loginValidatorMiddleware,
+    validateSignupData,
+    validateLoginData
 }
