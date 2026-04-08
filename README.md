@@ -34,7 +34,7 @@ Message Board where users can write and read messages.
 - in express app make sure to gitignore the .env file [x]
 - homepage should show the messages (but authors only visible for club-members) [x]
 - create a signup form [x]
-    - sanitize inputs [] Done for: Login, Join. Todo: Create Message, Secret Code
+    - sanitize inputs [x]
     - secure pw with bcrypt [x]
     - confirm pw field with custom validator []
     - login user in as he signs up not in a different step [x]

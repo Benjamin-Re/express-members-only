@@ -24,10 +24,13 @@ const validateSignupData = [
     body('email')
         .trim()
         .escape()
-        .isEmail().withMessage('Must be an email'),
+        .isEmail()
+        .isLength({ max: 20 })
+        .withMessage('Must be an email'),
     body('password')
         .trim()
         .escape()
+        .isLength({ max: 20 })
         .isStrongPassword(strongPasswordOptions).withMessage('minLength 6, min -Lower, -Upper, -Num and -Symbol: 1')
 ]
 
@@ -60,8 +63,17 @@ function showJoinTheClubForm(req, res) {
     res.render("join-club-form")
 }
 
+const validateClubData = [
+    body('secretCode').trim().escape().notEmpty().isLength({ max: 20 }).withMessage('Invalid code')
+]
+
 async function joinTheClub(req, res) {
-    const result = await db.joinTheClub(req.user, req.body.secretCode)
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.send("Incorrect Secret Code")
+    }
+    const secretCode = matchedData(req).secretCode
+    const result = await db.joinTheClub(req.user, secretCode)
     if (result) {
         res.redirect("/")
     } else {
@@ -79,8 +91,8 @@ function logoutUser(req, res) {
 }
 
 const validateLoginData = [
-    body('email').trim().isEmail().withMessage('email expected'),
-    body('password').trim().notEmpty().withMessage('expected password')
+    body('email').trim().isEmail().isLength({ max: 20 }).withMessage('email expected'),
+    body('password').trim().notEmpty().isLength({ max: 20 }).withMessage('expected password')
 ]
 
 function loginValidatorMiddleware(req, res, next) {
@@ -96,7 +108,6 @@ const loginUser = passport.authenticate('local', {
     failureRedirect: '/login'
 })
 
-
 module.exports = {
     showSignupForm,
     addUser,
@@ -107,5 +118,6 @@ module.exports = {
     loginUser,
     loginValidatorMiddleware,
     validateSignupData,
-    validateLoginData
+    validateLoginData,
+    validateClubData,
 }

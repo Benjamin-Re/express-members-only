@@ -33,7 +33,6 @@ async function addNewMessage(message) {
 async function joinTheClub(user, secretCode) {
   const result = await pool.query("SELECT * FROM secret_code;");
   const actualSecretCode = result.rows[0].secretCode;
-  console.log(`secretCode ${secretCode} actualSecretCode ${actualSecretCode}`)
   if (secretCode !== actualSecretCode) {
     return false
   }
