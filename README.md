@@ -36,7 +36,7 @@ Message Board where users can write and read messages.
 - create a signup form [x]
     - sanitize inputs [x]
     - secure pw with bcrypt [x]
-    - confirm pw field with custom validator []
+    - confirm pw field with custom validator [x]
     - login user in as he signs up not in a different step [x]
 - create new message form (only visible to logged in users) [x]
 - create join-the-club page where users can join with a secret code [x]
