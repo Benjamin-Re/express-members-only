@@ -16,13 +16,16 @@
         <input type="text" id="firstname" name="firstname" value="<%= locals.bodyPrev?.firstname || '' %>">
 
         <label for="lastname">Last Name: </label>
-        <input type="text" id="lastname" name="lastname">
+        <input type="text" id="lastname" name="lastname" value="<%= locals.bodyPrev?.lastname || '' %>">
 
         <label for="email">Email: </label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" value="<%= locals.bodyPrev?.email || '' %>">
 
         <label for="password">Password: </label>
-        <input type="password" id="password" name="password">
+        <input type="password" id="password" name="password" value="<%= locals.bodyPrev?.password || '' %>">
+
+        <label for="confirmPassword">Confirm Password: </label>
+        <input type="password" id="confirmPassword" name="confirmPassword" value="<%= locals.bodyPrev?.confirmPassword || '' %>">
 
         <button type="submit">Submit</button>
     </form>
