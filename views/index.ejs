@@ -18,7 +18,16 @@
                 <p><%= message.firstname %></p>
             <% } %>
             <%= message.timestamp %>
+            <button type="text" class="delete" data-id="<%= message.id %>">Delete</button>
         </div>
     <% }) %>
+    <script>
+        const deleteBtns = document.querySelectorAll('.delete')
+        for(let deleteBtn of deleteBtns) {
+            deleteBtn.addEventListener('click', (event) => {
+                console.log('Clicked Delete Msg Id: ' + event.currentTarget('data-id'))
+            })
+        }
+    </script>
 </body>
 </html>
