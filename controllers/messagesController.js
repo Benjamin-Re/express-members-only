@@ -36,9 +36,17 @@ const validateMessageData = [
     body('content').trim().notEmpty().escape().isLength({ max: 100 }).withMessage('Incorrect Content Format')
 ]
 
+async function deleteMessage(req, res) {
+    const messageId = req.params.id
+    console.log(`${messageId}`)
+    await db.deleteMessage(messageId)
+    res.status(200)
+}
+
 module.exports = {
     getAllMessages,
     showCreateMessageForm,
     addNewMessage,
-    validateMessageData
+    validateMessageData,
+    deleteMessage
 }

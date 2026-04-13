@@ -16,6 +16,11 @@ async function getAllMessagesWithAuthor() {
   return rows
 }
 
+async function deleteMessage(messageId) {
+  await pool.query("DELETE FROM messages WHERE messages.id = $1", [messageId])
+}
+
+
 async function addUser(user) {
   const hashedPassword = await bcrypt.hash(user.password, 10);
   const { rows } = await pool.query("INSERT INTO users (firstname, lastname, email, password)\
@@ -46,5 +51,6 @@ module.exports = {
   addUser,
   addNewMessage,
   joinTheClub,
-  getAllMessagesWithAuthor
+  getAllMessagesWithAuthor,
+  deleteMessage
 };
