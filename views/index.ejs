@@ -27,9 +27,7 @@
             deleteBtn.addEventListener('click', async (event) => {
                 const id = event.currentTarget.getAttribute('data-id')
                 const res = await fetch(`/delete/${id}`, { method: 'POST' })
-                if (res.ok) {
-                    event.currentTarget.closest('div').remove()
-                }
+                event.currentTarget.closest('div').remove()
             })
         }
     </script>
