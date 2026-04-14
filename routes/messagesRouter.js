@@ -6,6 +6,6 @@ const isAuth = require('../config/authMiddleware')
 messagesRouter.get("/", getAllMessages)
 messagesRouter.get("/create-message", showCreateMessageForm)
 messagesRouter.post("/create-message", isAuth, validateMessageData, addNewMessage)
-messagesRouter.post("/delete/:id", deleteMessage)
+messagesRouter.post("/delete/:id", isAuth, deleteMessage)
 
 module.exports = messagesRouter;

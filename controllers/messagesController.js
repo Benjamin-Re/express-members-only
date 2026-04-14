@@ -40,7 +40,7 @@ async function deleteMessage(req, res) {
     const messageId = req.params.id
     console.log(`${messageId}`)
     await db.deleteMessage(messageId)
-    res.status(200)
+    res.sendStatus(200)
 }
 
 module.exports = {

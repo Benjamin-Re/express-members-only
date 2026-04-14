@@ -18,7 +18,7 @@
                 <p><%= message.firstname %></p>
             <% } %>
             <%= message.timestamp %>
-            <button type="text" class="delete" data-id="<%= message.id %>">Delete</button>
+            <button type="text" class="delete" data-id="<%= message.message_id %>">Delete</button>
         </div>
     <% }) %>
     <script>
@@ -26,8 +26,9 @@
         for(let deleteBtn of deleteBtns) {
             deleteBtn.addEventListener('click', async (event) => {
                 const id = event.currentTarget.getAttribute('data-id')
+                const target = event.currentTarget
                 const res = await fetch(`/delete/${id}`, { method: 'POST' })
-                event.currentTarget.closest('div').remove()
+                target.closest('div').remove()
             })
         }
     </script>

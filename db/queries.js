@@ -12,12 +12,16 @@ async function getAllMessages() {
 }
 
 async function getAllMessagesWithAuthor() {
-  const { rows } = await pool.query("SELECT * FROM messages LEFT JOIN users ON messages.author = users.id;")
+  const { rows } = await pool.query("SELECT users.id AS users_id, firstname, \
+     messages.id AS message_id, messages.title, messages.content, messages.timestamp \
+     FROM messages LEFT JOIN users ON messages.author = users.id;")
   return rows
 }
 
 async function deleteMessage(messageId) {
-  await pool.query("DELETE FROM messages WHERE messages.id = $1", [messageId])
+    const result = await pool.query("DELETE FROM messages WHERE id = $1", [messageId]);
+    console.log("delete msg id:", messageId); // This is the gold mine of info
+    return result;
 }
 
 

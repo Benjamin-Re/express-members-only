@@ -23,7 +23,7 @@ const validateSignupData = [
     .escape()
     .isAlpha()
     .withMessage("Must contain only letters")
-    .isLength({ min: 1, max: 10 })
+    .isLength({ min: 1, max: 20 })
     .withMessage("Lastname Must be between 1 and 10 characters long"),
   body("email")
     .trim()
