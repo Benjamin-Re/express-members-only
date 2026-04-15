@@ -6,4 +6,14 @@ function isAuth(req,res,next) {
     }
 }
 
-module.exports = isAuth
+function isAdmin(req, res, next) {
+    const isAdmin = req.user.isAdmin
+    if (isAdmin) {
+        console.log('user is admin')
+        next()
+    } else {
+        res.render('/')
+    }
+}
+
+module.exports = { isAuth, isAdmin }

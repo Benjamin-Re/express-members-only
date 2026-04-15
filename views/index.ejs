@@ -18,7 +18,11 @@
                 <p><%= message.firstname %></p>
             <% } %>
             <%= message.timestamp %>
-            <button type="text" class="delete" data-id="<%= message.message_id %>">Delete</button>
+            <% if(user) { %>
+                <% if(user.isAdmin) { %>
+                    <button type="text" class="delete" data-id="<%= message.message_id %>">Delete</button>
+                <% } %>
+            <% } %>
         </div>
     <% }) %>
     <script>
@@ -28,7 +32,9 @@
                 const id = event.currentTarget.getAttribute('data-id')
                 const target = event.currentTarget
                 const res = await fetch(`/delete/${id}`, { method: 'POST' })
-                target.closest('div').remove()
+                if(res.status === 200) {
+                    target.closest('div').remove()
+                }
             })
         }
     </script>

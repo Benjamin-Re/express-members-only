@@ -4,7 +4,7 @@ const { showSignupForm, addUser, showLoginForm,
     showJoinTheClubForm, joinTheClub, logoutUser
 , validateSignupData, loginUser, validateLoginData, loginValidatorMiddleware,
 validateClubData } = require("../controllers/userController")
-const isAuth = require("../config/authMiddleware")
+const { isAuth } = require("../config/authMiddleware")
 
 userRouter.get("/signup", showSignupForm)
 userRouter.post("/signup", validateSignupData, addUser)

@@ -42,9 +42,10 @@ Message Board where users can write and read messages.
 - create join-the-club page where users can join with a secret code [x]
 - login form [x]
 - persist the session [x]
-- create delete functionality for admins (set admin manually in db) []
+- create delete functionality for admins (set admin manually in db) [x]
 - logout [x]
 - add css []
+- add tests []
 - deploy []
 
 
