@@ -1,0 +1,88 @@
+/* CSS Reset */
+@layer reset {
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  *:not(dialog) {
+    margin: 0;
+  }
+
+  body {
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      interpolate-size: allow-keywords;
+    }
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+
+    max-width: 100%;
+  }
+}
+
+@layer base {
+  body {
+    font-family: sans-serif;
+    background: rgb(21, 68, 154);
+    color: rgb(110, 227, 48)
+  }
+}
+
+@layer components {
+    #main-nav {
+        background: rgb(76, 202, 9);
+        color: rgb(111, 13, 154);
+    }
+    
+    .messageContainer {
+        background: rgb(126, 28, 169);
+    }
+    
+    a {
+        background: rgb(53, 142, 6);
+    }
+
+    button {
+        background: rgb(52, 98, 182);
+    }
+}
