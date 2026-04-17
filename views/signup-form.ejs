@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
     <% if (locals.errors) { %>
@@ -11,23 +12,20 @@
             <p>Error: <%= errors[i].msg %></p>
         <% } %>
     <% } %>
-    <form action="/signup" method="POST">
-        <label for="firstname">First Name: </label>
-        <input type="text" id="firstname" name="firstname" value="<%= locals.bodyPrev?.firstname || '' %>">
-
-        <label for="lastname">Last Name: </label>
-        <input type="text" id="lastname" name="lastname" value="<%= locals.bodyPrev?.lastname || '' %>">
-
-        <label for="email">Email: </label>
-        <input type="email" id="email" name="email" value="<%= locals.bodyPrev?.email || '' %>">
-
-        <label for="password">Password: </label>
-        <input type="password" id="password" name="password" value="<%= locals.bodyPrev?.password || '' %>">
-
-        <label for="confirmPassword">Confirm Password: </label>
-        <input type="password" id="confirmPassword" name="confirmPassword" value="<%= locals.bodyPrev?.confirmPassword || '' %>">
-
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <form action="/signup" method="POST">
+            <label for="firstname">First Name: </label>
+            <input type="text" id="firstname" name="firstname" value="<%= locals.bodyPrev?.firstname || '' %>">
+            <label for="lastname">Last Name: </label>
+            <input type="text" id="lastname" name="lastname" value="<%= locals.bodyPrev?.lastname || '' %>">
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" value="<%= locals.bodyPrev?.email || '' %>">
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password" value="<%= locals.bodyPrev?.password || '' %>">
+            <label for="confirmPassword">Confirm Password: </label>
+            <input type="password" id="confirmPassword" name="confirmPassword" value="<%= locals.bodyPrev?.confirmPassword || '' %>">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

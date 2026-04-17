@@ -1,14 +1,24 @@
 <ul id="main-nav">
     <li>
         <% if (!user) { %>
-            <a href="/login">Login</a>
-            <a href="/signup">Signup</a>
+            <li>
+                <a href="/login">Login</a>
+            </li>
+            <li>
+                <a href="/signup">Signup</a>
+            </li>
         <% } %>
         <% if(user) { %>
-            <a href="/logout">Logout</a>
-            <a href="/create-message">New Message</a>
+            <li>
+                <a href="/logout">Logout</a>
+            </li>
+            <li>
+                <a href="/create-message">New Message</a>
+            </li>
             <% if(!user.is_club_member) { %>
-                <a href="/join-the-club">Join the club</a>
+                <li>
+                    <a href="/join-the-club">Join the club</a>
+                </li>
             <% } %>
         <% } %>
     </li>
