@@ -32,7 +32,7 @@ async function addNewMessage(req, res) {
 }
 
 const validateMessageData = [
-    body('title').trim().notEmpty().escape().isLength({ max: 20 }).withMessage('Incorrect Title Format'),
+    body('title').trim().notEmpty().escape().isLength({ max: 50 }).withMessage('Incorrect Title Format'),
     body('content').trim().notEmpty().escape().isLength({ max: 100 }).withMessage('Incorrect Content Format')
 ]
 

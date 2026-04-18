@@ -44,7 +44,7 @@ Message Board where users can write and read messages.
 - persist the session [x]
 - create delete functionality for admins (set admin manually in db) [x]
 - logout [x]
-- add css []
+- add css [x]
 - add tests []
 - deploy []
 

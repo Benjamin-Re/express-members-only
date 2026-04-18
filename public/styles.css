@@ -62,16 +62,35 @@
 
 @layer base {
   body {
-    font-family: sans-serif;
-    background: rgb(21, 68, 154);
-    color: black;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background: #F8FAFC;
+    color: #334155;
   }
 }
 
 @layer components {
+
+  h2 {
+    letter-spacing: .4rem;
+  }
+
+  .author {
+    font-size: smaller;
+    color:#1e293b;
+  }
+
+  .timestamp {
+    font-style: italic;
+    font-size: smaller;
+  }
+
+  .content {
+    line-height: 1.6;
+  }
+
   #main-nav {
-    background: #1e293b; 
-    color: #f8fafc; 
+    background: #1E293B; 
+    color: #FFFF; 
     padding: 0.75rem 1.5rem;
     display: flex;
     justify-content: center;
@@ -79,14 +98,15 @@
   }
 
   .container {
-    background: #f1f5f9; 
+    background: #FFFFFF; 
     padding: 1rem 1.5rem;
-    margin: 0 auto;
-    
+    margin: 1rem auto;
+    border-radius: 10px;
+    max-width: 90%;
   }
 
   a {
-    color: #3b82f6; 
+    color: #FFFF; 
   }
 
   button {

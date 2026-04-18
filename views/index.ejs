@@ -14,11 +14,11 @@
     <% messages.forEach(message => { %> 
         <div class="container">
             <h2><%= message.title %></h2>
-            <p><%= message.content %></p>
+            <p class="content"><%= message.content %></p>
             <% if(message.firstname) { %>
-                <p><%= message.firstname %></p>
+                <p class="author"><%= message.firstname %></p>
             <% } %>
-            <%= message.timestamp %>
+            <p class='timestamp'><%= message.timestamp %></p>
             <% if(user) { %>
                 <% if(user.isAdmin) { %>
                     <button type="text" class="delete" data-id="<%= message.message_id %>">Delete</button>
